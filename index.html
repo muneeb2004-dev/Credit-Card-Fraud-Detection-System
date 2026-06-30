@@ -36,24 +36,24 @@
             <p class="eyebrow">Credit card transaction intelligence</p>
             <h1>Credit Card Fraud Detection System</h1>
             <p>
-              A dashboard companion for the ML notebook that trains a Deep Neural
-              Network, an XGBoost ensemble, and a weighted fraud-detection agent on
-              the public credit-card fraud dataset.
+              An Agentic AI fraud detection dashboard for a credit-card transaction
+              system that combines a Deep Neural Network, XGBoost, and a weighted
+              decision layer for final fraud classification.
             </p>
           </div>
 
           <div class="hero-panel" aria-label="Model summary">
             <div>
-              <span class="panel-label">Final agent ROC-AUC</span>
-              <strong>0.9997</strong>
+              <span class="panel-label">Report agent ROC-AUC</span>
+              <strong>&gt; 0.98</strong>
             </div>
             <div>
               <span class="panel-label">Fraud rate in raw data</span>
-              <strong>0.173%</strong>
+              <strong>0.172%</strong>
             </div>
             <div>
-              <span class="panel-label">Training rows after balancing</span>
-              <strong>16,000</strong>
+              <span class="panel-label">Decision threshold</span>
+              <strong>0.5</strong>
             </div>
           </div>
         </section>
@@ -72,12 +72,12 @@
           <article class="metric-card">
             <span>Features</span>
             <strong>30</strong>
-            <small>Scaled Time, Amount, and V1-V28</small>
+            <small>V1-V28, Time, Amount</small>
           </article>
           <article class="metric-card">
-            <span>Final agent accuracy</span>
-            <strong>99.82%</strong>
-            <small>Notebook test split</small>
+            <span>Report agent accuracy</span>
+            <strong>95%</strong>
+            <small>Combined DNN + XGBoost</small>
           </article>
         </section>
 
@@ -100,7 +100,7 @@
             <form id="transactionForm">
               <div class="input-cluster" id="coreInputs"></div>
               <details open>
-                <summary>PCA transaction features</summary>
+                <summary>Observation features</summary>
                 <div class="feature-grid" id="featureInputs"></div>
               </details>
               <div class="form-actions">
@@ -164,12 +164,12 @@
             <div class="imbalance-visual">
               <div class="bar-row">
                 <span>Legitimate</span>
-                <div class="bar"><span style="width: 99.827%"></span></div>
+                <div class="bar"><span style="width: 99.828%"></span></div>
                 <strong>284,315</strong>
               </div>
               <div class="bar-row fraud">
                 <span>Fraud</span>
-                <div class="bar"><span style="width: 0.173%"></span></div>
+                <div class="bar"><span style="width: 0.172%"></span></div>
                 <strong>492</strong>
               </div>
             </div>
@@ -189,29 +189,29 @@
             <div class="section-heading compact">
               <div>
                 <p class="eyebrow">Pipeline</p>
-                <h2>Training workflow</h2>
+                <h2>Agent workflow</h2>
               </div>
             </div>
             <div class="timeline">
               <div>
                 <span>1</span>
-                <strong>Load</strong>
-                <p>Read `creditcard.csv` with Time, Amount, V1-V28, and Class.</p>
+                <strong>Perceive</strong>
+                <p>A transaction arrives from the banking stream with 30 observed features.</p>
               </div>
               <div>
                 <span>2</span>
-                <strong>Explore</strong>
-                <p>Check missing values, class imbalance, correlations, and amount patterns.</p>
+                <strong>Process</strong>
+                <p>The DNN learns hidden patterns while XGBoost handles tabular structure.</p>
               </div>
               <div>
                 <span>3</span>
-                <strong>Balance</strong>
-                <p>Scale Time and Amount, then oversample the fraud class for training.</p>
+                <strong>Decide</strong>
+                <p>The agent combines 40% DNN and 60% XGBoost probability scores.</p>
               </div>
               <div>
                 <span>4</span>
-                <strong>Train</strong>
-                <p>Fit DNN and XGBoost models, then combine probabilities as an agent.</p>
+                <strong>Act</strong>
+                <p>A 0.5 threshold classifies the transaction as legitimate or fraud.</p>
               </div>
             </div>
           </article>
@@ -222,28 +222,36 @@
             <p class="eyebrow">About the project</p>
             <h2>Core features</h2>
             <p>
-              The notebook builds a fraud-detection workflow for anonymized credit-card
-              transactions. It covers data exploration, imbalance handling, feature
-              scaling, DNN training, XGBoost training, model comparison, and a final
-              weighted ensemble that produces a fraud probability.
+              This project presents a Fraud Detection Agent for real-world financial
+              security. The environment is a banking transaction stream, the observation
+              state is the 30 transaction features, and the policy brain is the combined
+              DNN and XGBoost decision system.
             </p>
           </div>
           <div class="feature-list">
             <article>
-              <strong>Exploratory analysis</strong>
-              <span>Class distribution, amount distribution, correlations, and time patterns.</span>
+              <strong>Agentic AI framework</strong>
+              <span>Perceive, process, decide, and act on banking transaction observations.</span>
             </article>
             <article>
-              <strong>Imbalance handling</strong>
-              <span>Balances 10,000 legitimate and 10,000 fraud examples for model training.</span>
+              <strong>Defined feature state</strong>
+              <span>Uses V1-V28 PCA features plus Time and Amount; Class trains the target label.</span>
             </article>
             <article>
-              <strong>Two-model strategy</strong>
-              <span>Compares a neural network with an XGBoost tabular ensemble.</span>
+              <strong>Deep Neural Network</strong>
+              <span>Four-layer 64-32-16-1 architecture with ReLU, Sigmoid, Dropout, and Batch Normalization.</span>
             </article>
             <article>
-              <strong>Agent-style decision</strong>
-              <span>Combines model probabilities with 40% DNN and 60% XGBoost weighting.</span>
+              <strong>XGBoost ensemble</strong>
+              <span>Uses 200 estimators and max depth 6 for strong tabular fraud detection.</span>
+            </article>
+            <article>
+              <strong>Decision layer</strong>
+              <span>Combines 40% DNN and 60% XGBoost probabilities with a 0.5 fraud threshold.</span>
+            </article>
+            <article>
+              <strong>Future-ready design</strong>
+              <span>Can evolve toward real-time streams, adaptive thresholds, and SHAP explainability.</span>
             </article>
           </div>
         </section>
@@ -253,3 +261,5 @@
     <script src="app.js"></script>
   </body>
 </html>
+
+

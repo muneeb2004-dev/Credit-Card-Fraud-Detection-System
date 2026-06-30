@@ -78,9 +78,9 @@ const SAMPLE_TRANSACTIONS = [
 ];
 
 const MODEL_RESULTS = [
-  { name: "Deep Neural Network", metric: "Accuracy", value: 99.45 },
-  { name: "XGBoost Ensemble", metric: "Accuracy", value: 99.88 },
-  { name: "Fraud Agent", metric: "Accuracy", value: 99.82 }
+  { name: "Deep Neural Network", metric: "Accuracy", value: 92 },
+  { name: "XGBoost Ensemble", metric: "Accuracy", value: 94 },
+  { name: "Fraud Detection Agent", metric: "Accuracy", value: 95 }
 ];
 
 const SCORE_WEIGHTS = {
@@ -290,3 +290,4 @@ els.form.addEventListener("submit", (event) => {
   event.preventDefault();
   analyzeTransaction();
 });
+
