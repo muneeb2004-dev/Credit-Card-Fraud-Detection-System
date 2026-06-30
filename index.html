@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Credit Card Fraud Detection System</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#overview" aria-label="Credit Card Fraud Detection System">
+          <span class="brand-mark">FD</span>
+          <span>
+            <strong>Fraud Detection</strong>
+            <small>ML project dashboard</small>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Dashboard sections">
+          <a href="#overview">Overview</a>
+          <a href="#tester">Transaction tester</a>
+          <a href="#performance">Performance</a>
+          <a href="#about">About</a>
+        </nav>
+
+        <div class="sidebar-note">
+          <span class="status-dot"></span>
+          <span>Static Vercel-ready dashboard</span>
+        </div>
+      </aside>
+
+      <main>
+        <section class="hero" id="overview">
+          <div class="hero-copy">
+            <p class="eyebrow">Credit card transaction intelligence</p>
+            <h1>Credit Card Fraud Detection System</h1>
+            <p>
+              A dashboard companion for the ML notebook that trains a Deep Neural
+              Network, an XGBoost ensemble, and a weighted fraud-detection agent on
+              the public credit-card fraud dataset.
+            </p>
+          </div>
+
+          <div class="hero-panel" aria-label="Model summary">
+            <div>
+              <span class="panel-label">Final agent ROC-AUC</span>
+              <strong>0.9997</strong>
+            </div>
+            <div>
+              <span class="panel-label">Fraud rate in raw data</span>
+              <strong>0.173%</strong>
+            </div>
+            <div>
+              <span class="panel-label">Training rows after balancing</span>
+              <strong>16,000</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="metric-grid" aria-label="Dataset and model metrics">
+          <article class="metric-card">
+            <span>Total transactions</span>
+            <strong>284,807</strong>
+            <small>Original dataset size</small>
+          </article>
+          <article class="metric-card">
+            <span>Fraudulent transactions</span>
+            <strong>492</strong>
+            <small>Class 1 observations</small>
+          </article>
+          <article class="metric-card">
+            <span>Features</span>
+            <strong>30</strong>
+            <small>Scaled Time, Amount, and V1-V28</small>
+          </article>
+          <article class="metric-card">
+            <span>Final agent accuracy</span>
+            <strong>99.82%</strong>
+            <small>Notebook test split</small>
+          </article>
+        </section>
+
+        <section class="workspace-grid" id="tester">
+          <article class="tool-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Interactive demo</p>
+                <h2>Transaction tester</h2>
+              </div>
+              <span class="model-badge">Demo score</span>
+            </div>
+
+            <div class="sample-row">
+              <label for="sampleSelect">Sample transaction</label>
+              <select id="sampleSelect"></select>
+              <button class="secondary-button" id="loadSample" type="button">Load</button>
+            </div>
+
+            <form id="transactionForm">
+              <div class="input-cluster" id="coreInputs"></div>
+              <details open>
+                <summary>PCA transaction features</summary>
+                <div class="feature-grid" id="featureInputs"></div>
+              </details>
+              <div class="form-actions">
+                <button class="primary-button" type="submit">Analyze transaction</button>
+                <button class="secondary-button" id="resetForm" type="button">Reset</button>
+              </div>
+            </form>
+          </article>
+
+          <article class="result-panel" aria-live="polite">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Decision view</p>
+                <h2 id="riskTitle">Awaiting transaction</h2>
+              </div>
+              <span class="risk-chip" id="riskChip">Idle</span>
+            </div>
+
+            <div class="risk-meter" aria-label="Fraud risk score">
+              <div class="risk-track">
+                <span id="riskFill"></span>
+              </div>
+              <div class="risk-value">
+                <strong id="riskScore">0.0%</strong>
+                <span id="riskDescription">Load a sample or enter values to run the demo score.</span>
+              </div>
+            </div>
+
+            <div class="prediction-grid">
+              <div>
+                <span>Predicted class</span>
+                <strong id="predictedClass">-</strong>
+              </div>
+              <div>
+                <span>Review action</span>
+                <strong id="reviewAction">-</strong>
+              </div>
+              <div>
+                <span>Loaded label</span>
+                <strong id="actualClass">-</strong>
+              </div>
+            </div>
+
+            <div class="driver-list">
+              <h3>Top score drivers</h3>
+              <ul id="driverList">
+                <li>No transaction has been analyzed yet.</li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <section class="charts-grid" id="performance">
+          <article class="chart-panel">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Class balance</p>
+                <h2>Dataset imbalance</h2>
+              </div>
+            </div>
+            <div class="imbalance-visual">
+              <div class="bar-row">
+                <span>Legitimate</span>
+                <div class="bar"><span style="width: 99.827%"></span></div>
+                <strong>284,315</strong>
+              </div>
+              <div class="bar-row fraud">
+                <span>Fraud</span>
+                <div class="bar"><span style="width: 0.173%"></span></div>
+                <strong>492</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="chart-panel">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Notebook results</p>
+                <h2>Model comparison</h2>
+              </div>
+            </div>
+            <div class="model-bars" id="modelBars"></div>
+          </article>
+
+          <article class="chart-panel wide">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Pipeline</p>
+                <h2>Training workflow</h2>
+              </div>
+            </div>
+            <div class="timeline">
+              <div>
+                <span>1</span>
+                <strong>Load</strong>
+                <p>Read `creditcard.csv` with Time, Amount, V1-V28, and Class.</p>
+              </div>
+              <div>
+                <span>2</span>
+                <strong>Explore</strong>
+                <p>Check missing values, class imbalance, correlations, and amount patterns.</p>
+              </div>
+              <div>
+                <span>3</span>
+                <strong>Balance</strong>
+                <p>Scale Time and Amount, then oversample the fraud class for training.</p>
+              </div>
+              <div>
+                <span>4</span>
+                <strong>Train</strong>
+                <p>Fit DNN and XGBoost models, then combine probabilities as an agent.</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="about-section" id="about">
+          <div>
+            <p class="eyebrow">About the project</p>
+            <h2>Core features</h2>
+            <p>
+              The notebook builds a fraud-detection workflow for anonymized credit-card
+              transactions. It covers data exploration, imbalance handling, feature
+              scaling, DNN training, XGBoost training, model comparison, and a final
+              weighted ensemble that produces a fraud probability.
+            </p>
+          </div>
+          <div class="feature-list">
+            <article>
+              <strong>Exploratory analysis</strong>
+              <span>Class distribution, amount distribution, correlations, and time patterns.</span>
+            </article>
+            <article>
+              <strong>Imbalance handling</strong>
+              <span>Balances 10,000 legitimate and 10,000 fraud examples for model training.</span>
+            </article>
+            <article>
+              <strong>Two-model strategy</strong>
+              <span>Compares a neural network with an XGBoost tabular ensemble.</span>
+            </article>
+            <article>
+              <strong>Agent-style decision</strong>
+              <span>Combines model probabilities with 40% DNN and 60% XGBoost weighting.</span>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
